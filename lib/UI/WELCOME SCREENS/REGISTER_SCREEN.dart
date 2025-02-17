@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_duplicate_app/LOGIC/SIGNUP/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/SIGNUP/state.dart';
-import 'package:instagram_duplicate_app/UI/SCREENS/HOME_SCREEN.dart';
+
 import 'package:instagram_duplicate_app/UI/WELCOME%20SCREENS/LOGIN_SCREEN.dart';
+import 'package:instagram_duplicate_app/UI/WIDGETS/BTM_NAVBAR_WIDGET.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -26,7 +27,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         listener: (context,state){
       if(state is SignupSuccessState){
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User Is Created Successfully ")));
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Bottombar()));
       }else if (state is SignUpErrorState){
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errorMessage)));
       }

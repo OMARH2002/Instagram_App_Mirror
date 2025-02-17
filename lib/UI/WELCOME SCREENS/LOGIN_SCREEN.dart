@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_duplicate_app/LOGIC/LOGIN/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/LOGIN/state.dart';
-import 'package:instagram_duplicate_app/UI/SCREENS/HOME_SCREEN.dart';
+
 import 'package:instagram_duplicate_app/UI/WELCOME%20SCREENS/REGISTER_SCREEN.dart';
+import 'package:instagram_duplicate_app/UI/WIDGETS/BTM_NAVBAR_WIDGET.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -27,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
           listener: (context,state){
             if(state is LoginSucessState){
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login Data is Correct ")));
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Bottombar()));
             }else if (state is LoginErrorState){
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errorMessage)));
             }

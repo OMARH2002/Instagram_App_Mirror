@@ -1,11 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_duplicate_app/LOGIC/SIGNUP/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/SIGNUP/state.dart';
+import 'package:instagram_duplicate_app/UI/PROFILE%20SCREENS/CREATE_USER_PROFILE.dart';
 
 import 'package:instagram_duplicate_app/UI/WELCOME%20SCREENS/LOGIN_SCREEN.dart';
-import 'package:instagram_duplicate_app/UI/WIDGETS/BTM_NAVBAR_WIDGET.dart';
+
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -21,13 +23,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (context)=>SignUpCubit(FirebaseAuth.instance),
+    return BlocProvider(create: (context)=>SignupCubit(FirebaseAuth.instance,),
 
-        child: BlocConsumer<SignUpCubit,SignUpStates>(
+        child: BlocConsumer<SignupCubit,SignUpStates>(
         listener: (context,state){
       if(state is SignupSuccessState){
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User Is Created Successfully ")));
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Bottombar()));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>CreateusersProfile()));
       }else if (state is SignUpErrorState){
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errorMessage)));
       }
@@ -95,7 +97,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if(formkey.currentState?.validate()??false){
         final email = emailController.text;
         final password = passwordController.text;
-        context.read<SignUpCubit>().SignUp(email,password);
+        context.read<SignupCubit>().signup(email,password);
       }
 
 

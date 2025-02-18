@@ -49,7 +49,7 @@ class _BottombarState extends State<Bottombar> {
           BottomNavigationBarItem(icon: Icon(Icons.search_sharp),label: "SEARCH"),
           BottomNavigationBarItem(icon: Image(image: AssetImage('assets/ICONS/Reels_Icon.png')),label: "REELS"),
           BottomNavigationBarItem(icon: Icon(Icons.shopping_bag_outlined),label: "SHOPPING"),
-          BottomNavigationBarItem(icon: CircleAvatar(radius: 15,child: Image(image: AssetImage('assets/IMAGES/Avatar.png')),backgroundColor: Colors.transparent,),label: "PROFILE")
+          BottomNavigationBarItem(icon: CircleAvatar(radius: 15,backgroundImage: AssetImage("assets/IMAGES/profilepic.png"),),backgroundColor: Colors.transparent,label: "PROFILE")
         ],
 
 

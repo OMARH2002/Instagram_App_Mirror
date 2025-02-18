@@ -12,16 +12,28 @@ class UserPageCubit extends Cubit<UserPageStates>{
     try {
       String uid = FirebaseAuth.instance.currentUser!.uid; // ✅ Get current user ID
 
+
       DocumentSnapshot userDoc = await FirebaseFirestore.instance
           .collection("UserData")
           .doc(uid)
           .get();
 
       if (userDoc.exists) {
-        String name = userDoc['name']; // ✅ Extract user name
+        String name = userDoc['name']; // ✅ Extract  name
+        String username = userDoc['username']; // ✅ Extract username
+        String bio = userDoc['bio']; // ✅ Extract bio
+        String category = userDoc['category']; // ✅ Extract category
+        String website = userDoc['website']; // ✅ Extract website
 
-        emit(UserPageSuccessState(name)); // ✅ Emit user name state
+        emit(UserPageSuccessState(
+          name: name,
+          username: username,
+          website: website,
+          bio: bio,
+          category: category,
+        )); // ✅ Emit user name state
       } else {
+
         emit(UserPageErrorState("User not found"));
       }
     } catch (e) {

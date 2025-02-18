@@ -25,6 +25,7 @@ final formkey = GlobalKey<FormState>();
   TextEditingController emailController  = TextEditingController();
   TextEditingController phoneController  = TextEditingController();
   TextEditingController genderController  = TextEditingController();
+  TextEditingController categoryController  = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return BlocProvider(create: (context) => CreateuserprofileCubit(),
@@ -72,7 +73,8 @@ final formkey = GlobalKey<FormState>();
                           bio: bioController.text,
                           email: emailController.text,
                           gender: genderController.text,
-                          phone: phoneController.text, // Use .text instead of .hashCode
+                          phone: phoneController.text,
+                          category: categoryController.text// Use .text instead of .hashCode
                         ),
                       );
                     }
@@ -111,7 +113,7 @@ final formkey = GlobalKey<FormState>();
                                     Text("Name",
                                       style: TextStyle(color: Colors.black,
                                           fontSize: 15,
-                                          fontWeight: FontWeight.bold),),
+                                          ),),
                                     SizedBox(width: 50,),
                                     Expanded(
 
@@ -320,6 +322,32 @@ final formkey = GlobalKey<FormState>();
                                   ],
                                 ),
                                 CustomDivider(),
+
+                                Row(
+                                  children: [
+                                    SizedBox(width: 9,),
+                                    Text("Category", style: TextStyle(
+                                        color: Colors.black, fontSize: 15),),
+                                    SizedBox(width: 25,),
+                                    Expanded(
+                                      child: TextFormField(
+                                        controller: categoryController,
+                                        decoration: InputDecoration(
+                                          fillColor: Colors.transparent,
+                                          filled: true,
+                                          hintText: "Enter Category",
+                                          border: InputBorder.none,
+                                        ),
+
+
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
+
+                                CustomDivider()
+
 
                               ],
                             ),

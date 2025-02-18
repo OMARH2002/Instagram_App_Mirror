@@ -7,6 +7,7 @@ class CreateUserProfileModel {
   String gender;
   String phone;
   String userID;
+  String category;
 
   CreateUserProfileModel({
     required this.name,
@@ -16,7 +17,8 @@ class CreateUserProfileModel {
     required this.email,
     required this.gender,
     required this.phone,
-    required this.userID
+    required this.userID,
+    required this.category
   });
 
   factory CreateUserProfileModel.fromJson(Map<String, dynamic> json) {
@@ -28,7 +30,9 @@ class CreateUserProfileModel {
       email: json['email'],
       gender: json['gender'],
       phone: json['phone'],
-      userID: json['userID']
+      userID: json['userID'],
+      category: json['category']
+
     );
   }
 
@@ -41,7 +45,8 @@ class CreateUserProfileModel {
       'email': email,
       'gender': gender,
       'phone': phone,
-      'userID':userID
+      'userID':userID,
+      'category':category
     };
   }
 }

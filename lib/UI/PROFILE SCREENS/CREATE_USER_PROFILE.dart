@@ -48,7 +48,7 @@ final formkey = GlobalKey<FormState>();
           return Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.red,
-                title: Text("Edit Profile",
+                title: Text("Create Profile",
                     style: TextStyle(fontSize: 20, color: Colors.black)),
                 centerTitle: true,
                 leadingWidth: 80,

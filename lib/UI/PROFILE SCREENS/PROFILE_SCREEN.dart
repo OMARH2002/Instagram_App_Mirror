@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:instagram_duplicate_app/LOGIC/USER_PROFILE_PAGE/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/USER_PROFILE_PAGE/state.dart';
-import 'package:instagram_duplicate_app/UI/WIDGETS/divider_widget.dart';
+import 'package:instagram_duplicate_app/main.dart';
+
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -38,36 +40,58 @@ class _ProfileScreenState extends State<ProfileScreen> {
     builder: (context, state){
       return Scaffold(
         appBar: AppBar(
-          title: Text(username, style: TextStyle(fontSize: 20)),
+toolbarHeight: 56.h,
+          title: Text(username, style: TextStyle(fontSize: 20.sp)),
           backgroundColor: Colors.red,
           actions: [
-            IconButton(onPressed: (){}, icon: Image(image: AssetImage("assets/ICONS/Add_Icon.png",),width: 20,height: 20,)),
+            
+            IconButton(onPressed: (){
+
+            }, icon: Icon(Icons.dark_mode)),
+            IconButton(onPressed: (){}, icon: Image(image: AssetImage("assets/ICONS/Add_Icon.png",),width: 20.w,height: 20.h,)),
             IconButton(onPressed: (){}, icon: Icon(Icons.menu,color: Colors.black,)),
 
 
           ],// ✅ Dynamic name
 
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
+        body: SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(height: 15.h,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircleAvatar(
-                    radius: 35,
-                    backgroundImage: AssetImage('assets/IMAGES/profilepic.png'),
+                   Container(
+                    width: 80.w,  // Adjust size for the outer border
+                    height: 80.h,
+
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: LinearGradient(
+                        colors: [Color(0xFFC913B9), Color(0xFFF9373F), Color(0xFFFECD00)], // Gradient colors
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(5.r), // Border thickness
+                      child: CircleAvatar(
+                        radius: 30.r,
+                        // Actual avatar size
+                        backgroundImage: AssetImage('assets/IMAGES/profilepic.png'),
+                      ),
+                    ),
                   ),
 
-                  SizedBox(width: 45,),
+                  SizedBox(width: 45.w ,),
                   Column(
                     children: [Text('0'),
                       Text("Posts"),
                     ],
 
                   ),
-                  SizedBox(width: 15,),
+                  SizedBox(width: 15.w,),
 
                   Column(
                     children: [Text('0'),
@@ -75,7 +99,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ],
 
                   ),
-                  SizedBox(width: 15,),
+                  SizedBox(width: 15.w,),
                   Column(
                     children: [Text('0'),
                       Text("Following"),
@@ -84,25 +108,147 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                 ],
               ),
-              CustomDivider(),
-              CustomDivider(),
+SizedBox        (height: 10.h,),
+              Row(
+
+                children: [
+                  SizedBox(width: 10.w,),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                    Text(name,style: TextStyle(fontWeight: FontWeight.bold),),
+                    SizedBox(height: 5.h,),
+                    Text(category),
+                    SizedBox(height: 5.h,),
+                    Text(bio),
+                    SizedBox(height: 5.h,),
+                    Text(website),
+                  ],)
+                ],
+              ),
+SizedBox(height: 15.h,),
 
               Row(
 
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                    Text(name),
-                    SizedBox(height: 5,),
-                    Text(category),
-                    SizedBox(height: 5,),
-                    Text(bio),
-                    SizedBox(height: 5,),
-                    Text(website),
-                  ],)
+                  SizedBox(height: 15.h,width: 25.w,),
+
+                  InkWell(onTap: (){
+
+                  },
+
+                    child: Container(
+                    width: 270.w,
+                    height: 25.h,
+                    color: Color(0xFFEFEFEF),
+                      child: Center(
+                        child: Text("Edit Profile",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                                    ),
+                  ),
+                  SizedBox(width: 10.w,),
+
+                  InkWell(onTap: (){
+
+                  },
+                    child: Container(
+                      width: 38.w,
+                      height: 25.h,
+                      color: Color(0xFFEFEFEF),
+                    child: Icon(Icons.person_add_outlined),),
+                  )],
+
+              ),
+              SizedBox(height: 25.h,),
+
+
+
+
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 35.r,
+                          backgroundImage: AssetImage('assets/IMAGES/profilepic.png'),
+                        ),
+                        Text("Text here"),
+                      ],
+                    ),
+                    SizedBox(width: 5.w),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 35.r,
+                          backgroundImage: AssetImage('assets/IMAGES/profilepic.png'),
+                        ),
+                        Text("Text here"),
+                      ],
+                    ),
+                    SizedBox(width: 5.w),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 35.r,
+                          backgroundImage: AssetImage('assets/IMAGES/profilepic.png'),
+                        ),
+                        Text("Text here"),
+                      ],
+                    ),
+
+                    SizedBox(width: 5.w),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 35.r,
+                          backgroundImage: AssetImage('assets/IMAGES/profilepic.png'),
+                        ),
+                        Text("Text here"),
+                      ],
+                    ),
+                    SizedBox(width: 5.w),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 35.r,
+                          backgroundImage: AssetImage('assets/IMAGES/profilepic.png'),
+                        ),
+                        Text("Text here"),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+SizedBox(height: 10.h,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,  // Center the icons
+                children: [
+                  IconButton(
+                    onPressed: (){},
+                    icon: Icon(Icons.grid_on_sharp),
+                    iconSize: 30.r,
+                  ),
+                  SizedBox(width: 50),
+                  IconButton(
+                    onPressed: (){},
+                    icon: Image(image: AssetImage("assets/ICONS/play_icon.png"), width: 30.w, height: 30.h),
+                  ),
+                  SizedBox(width: 50.w),
+                  IconButton(
+                    onPressed: (){},
+                    icon: Image(image: AssetImage("assets/ICONS/mention_icon.png"), width: 30.w, height: 30.h),
+                  ),
                 ],
               )
+
+
+
+
+
             ],
           ),
         )

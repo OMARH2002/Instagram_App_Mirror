@@ -92,52 +92,64 @@ class _LoginScreenState extends State<LoginScreen> {
           
           
                       SizedBox(height: 15,),
-                      InkWell(onTap: (){
-                if(formkey.currentState?.validate()??false){
-              final email = emailController.text;
-              final password = passwordController.text;
-              context.read<LoginCubit>().Login(email,password);
-            }
-          
-          
-          
-          },
-                          child: Container(
-                            width: 400,
-                            height: 50,
-                            decoration:BoxDecoration(color: Colors.blue,
-                            borderRadius: BorderRadius.circular(10)),
-                            child: Center(
-                              child: Text('Login',style:TextStyle(fontSize: 15,color: Colors.white),),
-                            ),
-                          )
+
+                      // Login Button with Loading Spinner
+                      InkWell(
+                        onTap: () {
+                          if (formkey.currentState?.validate() ?? false) {
+                            final email = emailController.text;
+                            final password = passwordController.text;
+                            context.read<LoginCubit>().Login(email, password);
+                          }
+                        },
+                        child: Container(
+                          width: 400,
+                          height: 50,
+                          decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Center(
+                            child: state is LoginLoadingState
+                                ? CircularProgressIndicator(
+                              color: Colors.white,
+                            ) // Show loading spinner
+                                : Text(
+                              'Login',
+                              style: TextStyle(
+                                  fontSize: 15, color: Colors.white),
+                            ), // Show normal text when not loading
+                          ),
+                        ),
                       ),
-          
-          
-          
-          
-          
-                    SizedBox(height: 10,),
-                    Center(child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Dont Have An Account?"),
-                      SizedBox(width: 5,),
-                      TextButton(onPressed: (){
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => RegisterScreen(),));
-          
-                      },
-                          child:
-                      Text('Register',style: TextStyle(fontWeight: FontWeight.bold),))],
-          
-          ),)
-          
+                      SizedBox(height: 10),
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Don't Have An Account?"),
+                            SizedBox(width: 5),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => RegisterScreen(),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                'Register',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     ],
                   ),
-                ),
-          
+            ),
           );
-        }
+          },
       ),
     );
   }

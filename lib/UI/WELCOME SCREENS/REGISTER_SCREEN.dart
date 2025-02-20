@@ -28,7 +28,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: BlocConsumer<SignupCubit,SignUpStates>(
         listener: (context,state){
       if(state is SignupSuccessState){
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User Is Created Successfully ")));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User ID Is Created Successfully ")));
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>CreateusersProfile()));
       }else if (state is SignUpErrorState){
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errorMessage)));
@@ -93,26 +93,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
 
             SizedBox(height: 15,),
-            InkWell(onTap: (){
-      if(formkey.currentState?.validate()??false){
-        final email = emailController.text;
-        final password = passwordController.text;
-        context.read<SignupCubit>().signup(email,password);
-      }
-
-
-
-              /////////
-            },
-                child: Container(
-                  width: 400,
-                  height: 50,
-                  decoration:BoxDecoration(color: Colors.blue,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Center(
-                    child: Text('Register',style:TextStyle(fontSize: 15,color: Colors.white),),
-                  ),
-                )
+            InkWell(
+              onTap: () {
+                if (formkey.currentState?.validate() ?? false) {
+                  final email = emailController.text;
+                  final password = passwordController.text;
+                  context.read<SignupCubit>().signup(email, password);
+                }
+              },
+              child: Container(
+                width: 400,
+                height: 50,
+                decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Center(
+                  child: state is SignUpLoadingState
+                      ? CircularProgressIndicator(
+                    color: Colors.white,
+                  ) // Show loading spinner
+                      : Text(
+                    'Register',
+                    style: TextStyle(
+                        fontSize: 15, color: Colors.white),
+                  ), // Show normal text when not loading
+                ),
+              ),
             ),
 
 

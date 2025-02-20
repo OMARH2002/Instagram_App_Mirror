@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 
 
@@ -14,17 +16,20 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
      appBar: AppBar(
-       title: Image(image: AssetImage('assets/IMAGES/IG_Logo.png'),width:104,height:30,),
+       toolbarHeight: 56.h,
+       title: Image(image: AssetImage('assets/IMAGES/IG_Logo.png'),width:104.w  ,height:30.h,),
 
        backgroundColor: Colors.red,
        actions: [
 
-         IconButton(onPressed: (){}, icon:Image(image: AssetImage("assets/ICONS/Favorite_Icon.png"),width: 24,)),
-         IconButton(onPressed: (){}, icon:Image(image: AssetImage("assets/ICONS/Chat_Icon.png",),width: 24)),
-         IconButton(onPressed: (){}, icon:Image(image: AssetImage("assets/ICONS/Add_Icon.png"),width: 24))
+         IconButton(onPressed: (){}, icon:Image(image: AssetImage("assets/ICONS/Favorite_Icon.png"),width: 24.w,)),
+         IconButton(onPressed: (){}, icon:Image(image: AssetImage("assets/ICONS/Chat_Icon.png",),width: 24.w)),
+         IconButton(onPressed: (){}, icon:Image(image: AssetImage("assets/ICONS/Add_Icon.png"),width: 24.w  ))
        ],
 
      ),
+
+
 
 
 

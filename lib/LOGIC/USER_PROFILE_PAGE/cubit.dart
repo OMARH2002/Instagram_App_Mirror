@@ -39,5 +39,6 @@ class UserPageCubit extends Cubit<UserPageStates>{
     } catch (e) {
       emit(UserPageErrorState(e.toString()));
     }
+
   }
 }

@@ -1,7 +1,7 @@
 class CreateUserProfileModel {
   String name;
   String username;
-  String? website;
+  String website;
   String bio;
   String email;
   String gender;
@@ -12,7 +12,7 @@ class CreateUserProfileModel {
   CreateUserProfileModel({
     required this.name,
     required this.username,
-    this.website,
+    required this.website,
     required this.bio,
     required this.email,
     required this.gender,
@@ -23,15 +23,15 @@ class CreateUserProfileModel {
 
   factory CreateUserProfileModel.fromJson(Map<String, dynamic> json) {
     return CreateUserProfileModel(
-      name: json['name'],
-      username: json['username'],
-      website: json['website'],
-      bio: json['bio'],
-      email: json['email'],
-      gender: json['gender'],
-      phone: json['phone'],
-      userID: json['userID'],
-      category: json['category']
+        name: json['name'],
+        username: json['username'],
+        website: json['website'],
+        bio: json['bio'],
+        email: json['email'],
+        gender: json['gender'],
+        phone: json['phone'],
+        userID: json['userID'],
+        category: json['category']
 
     );
   }

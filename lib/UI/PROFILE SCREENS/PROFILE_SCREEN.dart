@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:instagram_duplicate_app/LOGIC/USER_PROFILE_PAGE/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/USER_PROFILE_PAGE/state.dart';
-import 'package:instagram_duplicate_app/main.dart';
+import 'package:instagram_duplicate_app/UI/PROFILE%20SCREENS/CREATE_USER_PROFILE.dart';
+
 
 
 class ProfileScreen extends StatefulWidget {
@@ -134,6 +135,7 @@ SizedBox(height: 15.h,),
                   SizedBox(height: 15.h,width: 25.w,),
 
                   InkWell(onTap: (){
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CreateusersProfile(),));
 
                   },
 

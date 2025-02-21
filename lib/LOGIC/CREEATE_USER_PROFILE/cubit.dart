@@ -30,4 +30,34 @@ class CreateuserprofileCubit extends Cubit<CreateuserprofileStates> {
       emit(CreateuserprofileErrorState(e.toString()));
     }
   }
+
+  Future<void> fetchUserProfile() async {
+    try {
+      String userId = FirebaseAuth.instance.currentUser!.uid;
+
+      DocumentSnapshot userDoc =
+      await FirebaseFirestore.instance.collection('UserData').doc(userId).get();
+
+      if (userDoc.exists) {
+        CreateUserProfileModel userProfile =
+        CreateUserProfileModel.fromJson(userDoc.data() as Map<String, dynamic>);
+
+        emit(CreateuserprofileLoadedState(userProfile));
+      } else {
+        emit(CreateuserprofileLoadedState(CreateUserProfileModel(
+          userID: userId,
+          name: '',
+          username: '',
+          website: '',
+          bio: '',
+          email: '',
+          gender: '',
+          phone: '',
+          category: '',
+        )));
+      }
+    } catch (e) {
+      emit(CreateuserprofileErrorState(e.toString()));
+    }
+  }
 }

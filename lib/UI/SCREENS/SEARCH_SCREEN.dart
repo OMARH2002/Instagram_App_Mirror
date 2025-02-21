@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:instagram_duplicate_app/UI/PROFILE%20SCREENS/PROFILE_SCREEN.dart';
-import 'package:instagram_duplicate_app/main.dart';
+
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

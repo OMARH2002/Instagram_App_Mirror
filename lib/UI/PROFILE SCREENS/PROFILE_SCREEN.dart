@@ -20,7 +20,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String username = "Loading..."; // Default text before fetching
   String category = "Category/Genre text"; // Default text before fetching
   String bio = "biography"; // Default text before fetching
-  String website = "Link Goes Here"; // Default text before fetching
+  String website = "Link Goes Here";
+  String avatar = "https://via.placeholder.com/150";// Default text before fetching
 
 
   @override
@@ -35,6 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             category = state.category;
             bio = state.bio;
             website = state.website;
+            avatar = state.avatar;
 
           });
         }
@@ -81,7 +83,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               child: CircleAvatar(
                                 radius: 30.r,
                                 // Actual avatar size
-                                backgroundImage: AssetImage('assets/IMAGES/profilepic.png'),
+                                backgroundImage:NetworkImage(avatar) ,
                               ),
                             ),
                           ),

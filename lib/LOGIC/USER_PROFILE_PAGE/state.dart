@@ -8,6 +8,7 @@ class UserPageSuccessState extends UserPageStates {
   final String website;
   final String bio;
   final String category;
+  final String avatar;
 
   // Constructor to accept all fields
   UserPageSuccessState({
@@ -16,6 +17,7 @@ class UserPageSuccessState extends UserPageStates {
     required this.website,
     required this.bio,
     required this.category,
+    required this.avatar,
 
   });
 }

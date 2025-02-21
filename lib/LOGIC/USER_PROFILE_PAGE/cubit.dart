@@ -24,7 +24,7 @@ class UserPageCubit extends Cubit<UserPageStates>{
         String bio = userDoc['bio']; // ✅ Extract bio
         String category = userDoc['category']; // ✅ Extract category
         String website = userDoc['website']; // ✅ Extract website
-         // ✅ Extract website
+        String avatar = userDoc['avatar'];// ✅ Extract website
 
         emit(UserPageSuccessState(
           name: name,
@@ -32,6 +32,7 @@ class UserPageCubit extends Cubit<UserPageStates>{
           website: website,
           bio: bio,
           category: category,
+          avatar :avatar
 
         )); // ✅ Emit user name state
       } else {

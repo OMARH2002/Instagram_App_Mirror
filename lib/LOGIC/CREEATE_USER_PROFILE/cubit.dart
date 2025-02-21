@@ -7,20 +7,30 @@ import 'package:instagram_duplicate_app/LOGIC/CREEATE_USER_PROFILE/state.dart';
 class CreateuserprofileCubit extends Cubit<CreateuserprofileStates> {
   CreateuserprofileCubit() : super(CreateuserprofileInitialState());
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  // Create or update user profile
   Future<void> createProfile(CreateUserProfileModel createUser) async {
     emit(CreateuserprofileLoadingState());
     try {
-      // Get the currently authenticated user
-      User? user = FirebaseAuth.instance.currentUser;
+      User? user = _auth.currentUser;
 
       if (user != null) {
-        String uid = user.uid; // Get the user's UID
-
-        // Add the UID to the user profile model before storing in Firestore
+        String uid = user.uid;
         createUser.userID = uid;
 
-        // Save to Firestore using UID as the document ID
-        await FirebaseFirestore.instance.collection("UserData").doc(uid).set(createUser.toJson());
+        // Fetch existing user data from Firestore
+        DocumentSnapshot existingDoc = await _firestore.collection("UserData").doc(uid).get();
+        Map<String, dynamic>? existingData = existingDoc.data() as Map<String, dynamic>?;
+
+        // Preserve existing avatar if available
+        if (existingData != null && existingData.containsKey("avatar")) {
+          createUser.avatar = existingData["avatar"];
+        }
+
+        // Save/update user profile in Firestore
+        await _firestore.collection("UserData").doc(uid).set(createUser.toJson(), SetOptions(merge: true));
 
         emit(CreateuserprofileSuccesState());
       } else {
@@ -31,17 +41,15 @@ class CreateuserprofileCubit extends Cubit<CreateuserprofileStates> {
     }
   }
 
+  // Fetch user profile from Firestore
   Future<void> fetchUserProfile() async {
     try {
-      String userId = FirebaseAuth.instance.currentUser!.uid;
-
-      DocumentSnapshot userDoc =
-      await FirebaseFirestore.instance.collection('UserData').doc(userId).get();
+      String userId = _auth.currentUser!.uid;
+      DocumentSnapshot userDoc = await _firestore.collection('UserData').doc(userId).get();
 
       if (userDoc.exists) {
         CreateUserProfileModel userProfile =
         CreateUserProfileModel.fromJson(userDoc.data() as Map<String, dynamic>);
-
         emit(CreateuserprofileLoadedState(userProfile));
       } else {
         emit(CreateuserprofileLoadedState(CreateUserProfileModel(
@@ -56,6 +64,23 @@ class CreateuserprofileCubit extends Cubit<CreateuserprofileStates> {
           category: '',
         )));
       }
+    } catch (e) {
+      emit(CreateuserprofileErrorState(e.toString()));
+    }
+  }
+
+  // Update avatar URL in Firestore
+  Future<void> updateAvatar(String avatarUrl) async {
+    try {
+      String uid = _auth.currentUser!.uid;
+
+      // Update only the 'avatar' field inside UserData collection
+      await _firestore.collection("UserData").doc(uid).set(
+        {'avatar': avatarUrl},
+        SetOptions(merge: true), // Prevent overwriting other user data
+      );
+
+      emit(CreateuserprofileAvatarUpdatedState(avatarUrl));
     } catch (e) {
       emit(CreateuserprofileErrorState(e.toString()));
     }

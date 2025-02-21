@@ -8,6 +8,7 @@ class CreateUserProfileModel {
   String phone;
   String userID;
   String category;
+  String? avatar; // New field for avatar URL
 
   CreateUserProfileModel({
     required this.name,
@@ -18,24 +19,27 @@ class CreateUserProfileModel {
     required this.gender,
     required this.phone,
     required this.userID,
-    required this.category
+    required this.category,
+    this.avatar, // Make avatar optional
   });
 
+  // Convert Firestore JSON to CreateUserProfileModel
   factory CreateUserProfileModel.fromJson(Map<String, dynamic> json) {
     return CreateUserProfileModel(
-        name: json['name'],
-        username: json['username'],
-        website: json['website'],
-        bio: json['bio'],
-        email: json['email'],
-        gender: json['gender'],
-        phone: json['phone'],
-        userID: json['userID'],
-        category: json['category']
-
+      name: json['name'],
+      username: json['username'],
+      website: json['website'],
+      bio: json['bio'],
+      email: json['email'],
+      gender: json['gender'],
+      phone: json['phone'],
+      userID: json['userID'],
+      category: json['category'],
+      avatar: json['avatar'], // Load avatar from Firestore
     );
   }
 
+  // Convert CreateUserProfileModel to JSON for Firestore
   Map<String, dynamic> toJson() {
     return {
       'name': name,
@@ -45,8 +49,9 @@ class CreateUserProfileModel {
       'email': email,
       'gender': gender,
       'phone': phone,
-      'userID':userID,
-      'category':category
+      'userID': userID,
+      'category': category,
+      'avatar': avatar, // Save avatar URL in Firestore
     };
   }
 }

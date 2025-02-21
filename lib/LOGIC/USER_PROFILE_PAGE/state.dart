@@ -16,6 +16,7 @@ class UserPageSuccessState extends UserPageStates {
     required this.website,
     required this.bio,
     required this.category,
+
   });
 }
 class UserPageErrorState extends UserPageStates{

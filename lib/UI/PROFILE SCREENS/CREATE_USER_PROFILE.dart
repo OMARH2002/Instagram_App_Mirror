@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:instagram_duplicate_app/DATA/Create_user_profile_MODEL.dart';
 import 'package:instagram_duplicate_app/LOGIC/AvatarChange/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/AvatarChange/state.dart';
@@ -61,7 +62,7 @@ class _CreateusersProfileState extends State<CreateusersProfile> {
               appBar: AppBar(
                 backgroundColor: Colors.red,
                 title: Text("Create Profile",
-                    style: TextStyle(fontSize: 20, color: Colors.black)),
+                    style: TextStyle(fontSize: 20.sp, color: Colors.black)),
                 centerTitle: true,
                 leadingWidth: 80,
                 leading: TextButton(
@@ -73,7 +74,7 @@ class _CreateusersProfileState extends State<CreateusersProfile> {
                     },
                     child: Text(
                       "Cancel",
-                      style: TextStyle(color: Colors.black, fontSize: 16),
+                      style: TextStyle(color: Colors.black, fontSize: 16.sp),
                     )),
                 actions: [
                   TextButton(
@@ -94,7 +95,7 @@ class _CreateusersProfileState extends State<CreateusersProfile> {
                       child: Text(
                         'Done',
                         style: TextStyle(
-                            color: Color(0xFF3897F0), fontSize: 16),
+                            color: Color(0xFF3897F0), fontSize: 16.sp),
                       ))
                 ],
               ),
@@ -107,7 +108,7 @@ class _CreateusersProfileState extends State<CreateusersProfile> {
                             child: Center(
                                 child: Column(
                                     children: [
-                                      SizedBox(height: 10),
+                                      SizedBox(height: 10.h),
                                       BlocProvider(
                                           create: (context) =>
                                           AvatarCubit()..loadAvatar(),
@@ -133,7 +134,7 @@ class _CreateusersProfileState extends State<CreateusersProfile> {
                                                   avatarChild = CircularProgressIndicator();
                                                 } else {
                                                   avatarChild =
-                                                      Icon(Icons.person, size: 50);
+                                                      Icon(Icons.person, size: 50.r);
                                                 }
 
                                                 return Column(
@@ -152,7 +153,7 @@ class _CreateusersProfileState extends State<CreateusersProfile> {
                                                           CircularProgressIndicator(),
                                                       ],
                                                     ),
-                                                    SizedBox(height: 3),
+                                                    SizedBox(height: 3.h),
                                                     TextButton(
                                                         onPressed: () {
                                                           context
@@ -170,12 +171,12 @@ class _CreateusersProfileState extends State<CreateusersProfile> {
                                   // data under avatar
                                   Row(
                                     children: [
-                                      SizedBox(width: 9,),
+                                      SizedBox(width: 9.w ,),
                                       Text("Name",
                                         style: TextStyle(color: Colors.black,
                                           fontSize: 15,
                                         ),),
-                                      SizedBox(width: 50,),
+                                      SizedBox(width: 50.w  ,),
                                       Expanded(
 
                                         child:
@@ -198,7 +199,7 @@ class _CreateusersProfileState extends State<CreateusersProfile> {
 
                                   Row(
                                     children: [
-                                      SizedBox(width: 9,),
+                                      SizedBox(width: 9.w,),
                                       Text("UserName", style: TextStyle(
                                           color: Colors.black, fontSize: 15),),
                                       SizedBox(width: 10,),
@@ -218,17 +219,17 @@ class _CreateusersProfileState extends State<CreateusersProfile> {
 
                                     ],
                                   ),
-                                  SizedBox(height: 5,),
+                                  SizedBox(height: 5.h,),
 
                                   CustomDivider(),
 
 
                                   Row(
                                     children: [
-                                      SizedBox(width: 9,),
+                                      SizedBox(width: 9.w ,),
                                       Text("Website", style: TextStyle(
-                                          color: Colors.black, fontSize: 15),),
-                                      SizedBox(width: 25,),
+                                          color: Colors.black, fontSize: 15.r),),
+                                      SizedBox(width: 25.w,),
                                       Expanded(
                                         child: TextFormField(
                                           controller: websiteController,
@@ -245,7 +246,7 @@ class _CreateusersProfileState extends State<CreateusersProfile> {
 
                                     ],
                                   ),
-                                  SizedBox(height: 5,),
+                                  SizedBox(height: 5.h,),
 
 
                                   CustomDivider(),
@@ -253,10 +254,10 @@ class _CreateusersProfileState extends State<CreateusersProfile> {
 
                                   Row(
                                     children: [
-                                      SizedBox(width: 9,),
+                                      SizedBox(width: 9.w,),
                                       Text("Bio", style: TextStyle(
-                                          color: Colors.black, fontSize: 15),),
-                                      SizedBox(width: 55,),
+                                          color: Colors.black, fontSize: 15.r),),
+                                      SizedBox(width: 55.w,),
                                       Expanded(
                                         child: TextFormField(
                                           controller: bioController,
@@ -273,7 +274,7 @@ class _CreateusersProfileState extends State<CreateusersProfile> {
 
                                     ],
                                   ),
-                                  SizedBox(height: 5,),
+                                  SizedBox(height: 5.h,),
 
 
                                   CustomDivider(),
@@ -286,32 +287,32 @@ class _CreateusersProfileState extends State<CreateusersProfile> {
                                             "Switch to Professional Account",
                                             style: TextStyle(
                                                 color: Color(0xFF3897F0),
-                                                fontSize: 15),)),
+                                                fontSize: 15.r),)),
                                     ],
                                   ),
 
                                   CustomDivider(),
 
-                                  const Row(
+                                   Row(
 
                                     children: [
-                                      SizedBox(width: 15,),
+                                      SizedBox(width: 15.w,),
                                       Text("Private Information",
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 15),),
+                                            fontSize: 15.r),),
                                     ],
                                   ),
-                                  const SizedBox(height: 10,),
+                                  SizedBox(height: 10.h,),
 
                                   Row(
                                     children: [
-                                      SizedBox(width: 9,),
+                                      SizedBox(width: 9.w,),
                                       Text("Email", style: TextStyle(
                                           color: Colors.black, fontSize: 15),
                                       ),
 
-                                      const SizedBox(width: 30,),
+                                      SizedBox(width: 30.w,),
 
                                       Expanded(
                                         child: TextFormField(
@@ -329,14 +330,14 @@ class _CreateusersProfileState extends State<CreateusersProfile> {
 
                                     ],
                                   ),
-                                  SizedBox(height: 5,),
+                                  SizedBox(height: 5.h,),
 
                                   CustomDivider(),
 
 
                                   Row(
                                     children: [
-                                      SizedBox(width: 9,),
+                                      SizedBox(width: 9.w,),
                                       Text("Phone", style: TextStyle(
                                           color: Colors.black, fontSize: 15),),
                                       SizedBox(width: 25,),
@@ -356,14 +357,14 @@ class _CreateusersProfileState extends State<CreateusersProfile> {
 
                                     ],
                                   ),
-                                  SizedBox(height: 5,),
+                                  SizedBox(height: 5.h,),
 
                                   CustomDivider(),
 
 
                                   Row(
                                     children: [
-                                      SizedBox(width: 9,),
+                                      SizedBox(width: 9.w,),
                                       Text("Gender", style: TextStyle(
                                           color: Colors.black, fontSize: 15),),
                                       SizedBox(width: 25,),
@@ -387,9 +388,9 @@ class _CreateusersProfileState extends State<CreateusersProfile> {
 
                                   Row(
                                     children: [
-                                      SizedBox(width: 9,),
+                                      SizedBox(width: 9.w ,),
                                       Text("Category", style: TextStyle(
-                                          color: Colors.black, fontSize: 15),),
+                                          color: Colors.black, fontSize: 15.r),),
                                       SizedBox(width: 25,),
                                       Expanded(
                                         child: TextFormField(

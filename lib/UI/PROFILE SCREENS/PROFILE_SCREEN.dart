@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:instagram_duplicate_app/LOGIC/USER_PROFILE_PAGE/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/USER_PROFILE_PAGE/state.dart';
 import 'package:instagram_duplicate_app/UI/PROFILE%20SCREENS/CREATE_USER_PROFILE.dart';
+import 'package:instagram_duplicate_app/UI/WIDGETS/signout.dart';
 
 
 
@@ -47,17 +48,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   toolbarHeight: 56.h,
                   title: Text(username, style: TextStyle(fontSize: 20.sp)),
                   backgroundColor: Colors.red,
+                  
                   actions: [
 
-                    IconButton(onPressed: (){
-
-                    }, icon: Icon(Icons.dark_mode)),
+                    IconButton(onPressed: (){}, icon: Icon(Icons.dark_mode)),
                     IconButton(onPressed: (){}, icon: Image(image: AssetImage("assets/ICONS/Add_Icon.png",),width: 20.w,height: 20.h,)),
-                    IconButton(onPressed: (){}, icon: Icon(Icons.menu,color: Colors.black,)),
-
-
-                  ],// ✅ Dynamic name
-
+                    IconButton(
+                      onPressed: () {
+                        showSignOutMenu(context); // Call the function from the separate file
+                      },
+                      icon: Icon(Icons.signpost, color: Colors.black),
+                    ),
+                  ],
                 ),
                 body: SingleChildScrollView(
                   child: Column(
@@ -78,6 +80,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 end: Alignment.bottomRight,
                               ),
                             ),
+
                             child: Padding(
                               padding: EdgeInsets.all(5.r), // Border thickness
                               child: CircleAvatar(

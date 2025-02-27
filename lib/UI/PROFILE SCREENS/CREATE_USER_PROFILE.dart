@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -86,7 +87,7 @@ class _CreateusersProfileState extends State<CreateusersProfile> {
                               username: usernameController.text,
                               website: websiteController.text,
                               bio: bioController.text,
-                              email: emailController.text,
+                              email: FirebaseAuth.instance.currentUser!.email!,
                               gender: genderController.text,
                               phone: phoneController.text,
                               category: categoryController.text),
@@ -320,6 +321,7 @@ class _CreateusersProfileState extends State<CreateusersProfile> {
                                           decoration: InputDecoration(
                                             fillColor: Colors.transparent,
                                             filled: true,
+                                            enabled: false,
                                             hintText: "Enter Email",
                                             border: InputBorder.none,
                                           ),

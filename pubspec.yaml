@@ -44,6 +44,10 @@ dependencies:
   firebase_storage: ^12.4.3
   image_picker: ^1.1.2
   flutter_native_splash: ^2.4.5
+  video_player: ^2.9.2
+  chewie: ^1.10.0
+  flutter_cache_manager: ^3.4.1
+  equatable: ^2.0.5
 
 
 

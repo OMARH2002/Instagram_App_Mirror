@@ -5,9 +5,10 @@ import 'package:instagram_duplicate_app/LOGIC/USER_PROFILE_PAGE/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/USER_PROFILE_PAGE/state.dart';
 import 'package:instagram_duplicate_app/UI/PROFILE%20SCREENS/PROFILE_SCREEN.dart';
 import 'package:instagram_duplicate_app/UI/SCREENS/HOME_SCREEN.dart';
-import 'package:instagram_duplicate_app/UI/SCREENS/REELS_SCREEN.dart';
+
 import 'package:instagram_duplicate_app/UI/SCREENS/SEARCH_SCREEN.dart';
-import 'package:instagram_duplicate_app/UI/SCREENS/SHOPPING_SCREEN.dart';
+import 'package:instagram_duplicate_app/UI/reels_screens/REELS_SCREEN.dart';
+import 'package:instagram_duplicate_app/UI/shopping/SHOPPING_SCREEN.dart';
 
 class Bottombar extends StatefulWidget {
   final int initialIndex;

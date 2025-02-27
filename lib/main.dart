@@ -1,10 +1,17 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:instagram_duplicate_app/UI/SPLASH_SCREEN/SPLASH_SCREEN_ICON.dart';
+import 'package:instagram_duplicate_app/LOGIC/REELS/cubit.dart';
+import 'package:instagram_duplicate_app/LOGIC/SHOPPING/cubit.dart';
+
+
 
 import 'package:instagram_duplicate_app/UI/WELCOME%20SCREENS/LOGIN_SCREEN.dart';
-import 'package:instagram_duplicate_app/UI/WIDGETS/BTM_NAVBAR_WIDGET.dart';
+import 'package:instagram_duplicate_app/UI/shopping/uplaod%20screen.dart';
+import 'package:instagram_duplicate_app/themes/themes.dart';
+import 'package:provider/provider.dart';
+
 
 
 
@@ -26,23 +33,40 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
         designSize: Size(360, 690), // Base size (adjust if needed)
-        minTextAdapt: true,
-        splitScreenMode: true,
-     builder: (
-       context,child) {
-        return MaterialApp(
-          title: 'Instagram App',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
+    minTextAdapt: true,
+    splitScreenMode: true,
 
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
-          home: const SplashScreenIcon()
+    child:
+    MultiBlocProvider(
+      providers: [
 
-        );
-      }
-    );
 
+
+        BlocProvider(create: (context) => ReelCubit()),
+        BlocProvider(create: (context) => ShoppingCubit()),
+
+      ],
+
+      child: ChangeNotifierProvider(
+        create: (_) => ThemeManager(), // Provide ThemeManager
+        child: Consumer<ThemeManager>(
+
+          builder: (context, themeManager, child) {
+            return MaterialApp(
+              title: 'Flutter Demo',
+              theme: themeManager.isDarkMode
+                  ? ThemeData.dark().copyWith(
+                scaffoldBackgroundColor: Colors.black,
+                appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
+              )
+                  : ThemeData.light(), // Light Theme
+              debugShowCheckedModeBanner: false,
+
+              home: LoginScreen(),
+            );
+          },
+        ),
+      ),
+    ));
   }
 }

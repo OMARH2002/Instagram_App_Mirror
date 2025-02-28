@@ -11,7 +11,7 @@ class UserListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Users', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text('Chats', style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
         elevation: 0,
       ),
@@ -53,7 +53,7 @@ class UserListScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ChatScreen(receiverId: user.uid),
+                      builder: (context) => ChatScreen(),
                     ),
                   );
                 },

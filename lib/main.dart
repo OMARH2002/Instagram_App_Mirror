@@ -2,10 +2,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:instagram_duplicate_app/LOGIC/Chat/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/HOMEPAGE/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/REELS/cubit.dart';
+import 'package:instagram_duplicate_app/LOGIC/SEARCH/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/SHOPPING/cubit.dart';
+
 import 'package:instagram_duplicate_app/UI/SPLASH_SCREEN/SPLASH_SCREEN_ICON.dart';
 
 
@@ -14,11 +17,6 @@ import 'package:instagram_duplicate_app/UI/WELCOME%20SCREENS/LOGIN_SCREEN.dart';
 import 'package:instagram_duplicate_app/UI/shopping/uplaod%20screen.dart';
 import 'package:instagram_duplicate_app/themes/themes.dart';
 import 'package:provider/provider.dart';
-
-
-
-
-
 
 
 void main()async {
@@ -46,8 +44,10 @@ class MyApp extends StatelessWidget {
 
         BlocProvider(create: (context) => HomeCubit()),
         BlocProvider(create: (context) => ChatCubit()),
+        BlocProvider(create: (context) => ChatCubit()),
         BlocProvider(create: (context) => ReelCubit()),
         BlocProvider(create: (context) => ShoppingCubit()),
+        BlocProvider(create: (context) => SearchCubit())
 
       ],
 

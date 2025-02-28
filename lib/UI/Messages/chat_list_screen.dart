@@ -1,70 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:instagram_duplicate_app/LOGIC/Chat/cubit.dart';
-import 'package:instagram_duplicate_app/LOGIC/Chat/state.dart';
-import 'package:instagram_duplicate_app/UI/Messages/Search_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
+import 'package:instagram_duplicate_app/DATA/user%20chat/usermodel.dart';
 import 'package:instagram_duplicate_app/UI/Messages/chat_Screen.dart';
-import 'package:instagram_duplicate_app/UI/WIDGETS/chat_widgets/Chat_tile.dart';
 
-
-class ChatListScreen extends StatelessWidget {
-  const ChatListScreen({super.key});
-
+class UserListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chats'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () => _showSearchDialog(context),
-          ),
-        ],
+        title: Text('Users', style: TextStyle(fontWeight: FontWeight.bold)),
+        centerTitle: true,
+        elevation: 0,
       ),
-      body: BlocBuilder<ChatCubit, ChatState>(
-        builder: (context, state) {
-          if (state is ChatLoading) {
-            return const Center(child: CircularProgressIndicator());
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('UserData').snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
           }
-          if (state is ChatError) {
-            return Center(child: Text(state.message));
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return Center(child: Text('No users found', style: TextStyle(fontSize: 16)));
           }
-          if (state is ChatLoaded) {
-            return ListView.builder(
-              itemCount: state.chats.length,
-              itemBuilder: (context, index) {
-                final chat = state.chats[index];
-                return ChatTile(chat: chat);
-              },
-            );
-          }
-          return const Center(child: Text('No chats available'));
-        },
-      ),
-    );
-  }
 
-  void _showSearchDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => SearchUserDialog(
-        onUserSelected: (userId, username) {
-          context.read<ChatCubit>().createChat(userId, username).then((chatId) {
-            Navigator.pop(context); // Close the search dialog
-            if (chatId != null) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => ChatScreen(
-                    chatId: chatId,
-                    otherUserId: userId,
-                    otherUsername: username,
-                  ),
+          final users = snapshot.data!.docs
+              .map((doc) => UserModel.fromMap(doc.data() as Map<String, dynamic>))
+              .toList();
+
+          return ListView.separated(
+            padding: EdgeInsets.all(10),
+            itemCount: users.length,
+            separatorBuilder: (context, index) => Divider(),
+            itemBuilder: (context, index) {
+              final user = users[index];
+              if (user.uid == FirebaseAuth.instance.currentUser!.uid) {
+                return SizedBox.shrink(); // Skip the current user
+              }
+              return ListTile(
+                leading: CircleAvatar(
+                  radius: 25,
+                  backgroundImage: CachedNetworkImageProvider(user.imageUrl),
                 ),
+                title: Text(
+                  user.name,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+                subtitle: Text(user.username, style: TextStyle(fontSize: 14, color: Colors.grey[600])),
+                trailing: Icon(Icons.chat_bubble_outline, color: Colors.blueAccent),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ChatScreen(receiverId: user.uid),
+                    ),
+                  );
+                },
               );
-            }
-          });
+            },
+          );
         },
       ),
     );

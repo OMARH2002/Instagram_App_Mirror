@@ -5,6 +5,7 @@ import 'package:instagram_duplicate_app/LOGIC/HOMEPAGE/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/HOMEPAGE/state.dart';
 import 'package:instagram_duplicate_app/UI/HOME/Post_Upload.dart';
 import 'package:instagram_duplicate_app/UI/HOME/Story_Upload.dart';
+import 'package:instagram_duplicate_app/UI/Messages/chat_list_screen.dart';
 import 'package:instagram_duplicate_app/UI/WIDGETS/post.dart';
 import 'package:instagram_duplicate_app/UI/WIDGETS/story.dart';
 
@@ -23,7 +24,10 @@ class HomeScreen extends StatelessWidget {
         actions: [
 
           IconButton(onPressed: (){}, icon:Image(image: AssetImage("assets/ICONS/Favorite_Icon.png"),width: 24.w,)),
-          IconButton(onPressed: (){}, icon:Image(image: AssetImage("assets/ICONS/Chat_Icon.png",),width: 24.w)),
+          IconButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ChatListScreen(),));
+
+          }, icon:Image(image: AssetImage("assets/ICONS/Chat_Icon.png",),width: 24.w)),
           IconButton(onPressed: () => _showUploadOptions(context), icon:Image(image: AssetImage("assets/ICONS/Add_Icon.png"),width: 24.w  ))
         ],
 

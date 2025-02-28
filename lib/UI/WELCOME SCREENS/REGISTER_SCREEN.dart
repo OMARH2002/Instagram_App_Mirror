@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_duplicate_app/LOGIC/SIGNUP/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/SIGNUP/state.dart';
 import 'package:instagram_duplicate_app/UI/PROFILE%20SCREENS/CREATE_USER_PROFILE.dart';
-import 'package:instagram_duplicate_app/UI/SCREENS/HOME_SCREEN.dart';
+
 
 import 'package:instagram_duplicate_app/UI/WELCOME%20SCREENS/LOGIN_SCREEN.dart';
 import 'package:instagram_duplicate_app/UI/WIDGETS/BTM_NAVBAR_WIDGET.dart';

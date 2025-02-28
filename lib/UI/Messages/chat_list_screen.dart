@@ -41,7 +41,7 @@ class UserListScreen extends StatelessWidget {
               return ListTile(
                 leading: CircleAvatar(
                   radius: 25,
-                  backgroundImage: CachedNetworkImageProvider(user.imageUrl),
+                  backgroundImage: CachedNetworkImageProvider(user.avatar),
                 ),
                 title: Text(
                   user.name,

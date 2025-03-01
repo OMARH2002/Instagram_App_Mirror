@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_duplicate_app/DATA/story_Model.dart';
 import 'package:instagram_duplicate_app/LOGIC/HOMEPAGE/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/HOMEPAGE/state.dart';
+
 import 'package:instagram_duplicate_app/UI/HOME/Story%20Screen.dart';
 import 'package:instagram_duplicate_app/UI/HOME/Story_Upload.dart';
-
 
 class StoryWidget extends StatelessWidget {
   const StoryWidget({super.key});
@@ -90,7 +90,12 @@ class StoryCircle extends StatelessWidget {
                     builder: (_) => StoryViewScreen(
                       stories: (context.read<HomeCubit>().state as HomeLoaded).stories,
                       initialIndex: 1,
-
+                      onStoryEnd: () {
+                        // Navigate back to the home screen
+                        Navigator.pop(
+                          context
+                        );
+                      },
                     ),
                   ),
                 );

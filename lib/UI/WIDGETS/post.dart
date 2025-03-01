@@ -25,27 +25,8 @@ class PostWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.favorite_border),
-                    onPressed: () {},
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.comment),
-                    onPressed: () {},
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.send),
-                    onPressed: () {},
-                  ),
-                ],
-              ),
-              Text('${post.likes.length} likes'),
               Text(post.username, style: const TextStyle(fontWeight: FontWeight.bold)),
               Text(post.caption),
-              const SizedBox(height: 8),
-              const Text('View all comments'),
               const SizedBox(height: 8),
               const Text('2 hours ago', style: TextStyle(color: Colors.grey)),
             ],

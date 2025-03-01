@@ -2,15 +2,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:instagram_duplicate_app/DATA/story_Model.dart';
 
-
 class StoryViewScreen extends StatefulWidget {
   final List<Story> stories;
   final int initialIndex;
+  final VoidCallback onStoryEnd;
 
   const StoryViewScreen({
     super.key,
     required this.stories,
     required this.initialIndex,
+    required this.onStoryEnd,
   });
 
   @override
@@ -64,7 +65,8 @@ class _StoryViewScreenState extends State<StoryViewScreen> {
         _progress = 0.0;
       });
     } else {
-      Navigator.pop(context); // Close when all stories are done
+      // Call the callback to handle the end of stories
+      widget.onStoryEnd();
     }
   }
 

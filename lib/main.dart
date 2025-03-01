@@ -9,19 +9,17 @@ import 'package:instagram_duplicate_app/LOGIC/REELS/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/SEARCH/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/SHOPPING/cubit.dart';
 
+import 'package:instagram_duplicate_app/themes/appthemes.dart';
+import 'package:provider/provider.dart';
 import 'package:instagram_duplicate_app/UI/SPLASH_SCREEN/SPLASH_SCREEN_ICON.dart';
 
-
-
-import 'package:instagram_duplicate_app/UI/WELCOME%20SCREENS/LOGIN_SCREEN.dart';
-import 'package:instagram_duplicate_app/UI/shopping/uplaod%20screen.dart';
 import 'package:instagram_duplicate_app/themes/themes.dart';
-import 'package:provider/provider.dart';
 
 
-void main()async {
+
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
@@ -29,46 +27,35 @@ void main()async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: Size(360, 690), // Base size (adjust if needed)
-    minTextAdapt: true,
-    splitScreenMode: true,
-
-    child:
-    MultiBlocProvider(
-      providers: [
-
-
-        BlocProvider(create: (context) => HomeCubit()),
-        BlocProvider(create: (context) => ReelCubit()),
-        BlocProvider(create: (context) => ShoppingCubit()),
-        BlocProvider(create: (context) => SearchCubit())
-
-      ],
-
+      designSize: const Size(360, 690), // Base size (adjust if needed)
+      minTextAdapt: true,
+      splitScreenMode: true,
       child: ChangeNotifierProvider(
-        create: (_) => ThemeManager(), // Provide ThemeManager
-        child: Consumer<ThemeManager>(
-
-          builder: (context, themeManager, child) {
-            return MaterialApp(
-              title: 'Flutter Demo',
-              theme: themeManager.isDarkMode
-                  ? ThemeData.dark().copyWith(
-                scaffoldBackgroundColor: Colors.black,
-                appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
-              )
-                  : ThemeData.light(), // Light Theme
-              debugShowCheckedModeBanner: false,
-
-              home: SplashScreenIcon(),
-            );
-          },
+        create: (_) => ThemeNotifier(), // Provide the ThemeNotifier
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (context) => HomeCubit()),
+            BlocProvider(create: (context) => ReelCubit()),
+            BlocProvider(create: (context) => ShoppingCubit()),
+            BlocProvider(create: (context) => SearchCubit()),
+          ],
+          child: Consumer<ThemeNotifier>(
+            builder: (context, notifier, child) {
+              return MaterialApp(
+                title: 'Instagram Duplicate App',
+                theme: AppThemes.lightTheme, // Use your custom light theme
+                darkTheme: AppThemes.darkTheme, // Use your custom dark theme
+                themeMode: notifier.themeMode, // Dynamic theme mode
+                debugShowCheckedModeBanner: false,
+                home: const SplashScreenIcon(),
+              );
+            },
+          ),
         ),
       ),
-    ));
+    );
   }
 }

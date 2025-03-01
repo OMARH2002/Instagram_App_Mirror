@@ -6,6 +6,8 @@ import 'package:instagram_duplicate_app/LOGIC/USER_PROFILE_PAGE/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/USER_PROFILE_PAGE/state.dart';
 import 'package:instagram_duplicate_app/UI/PROFILE%20SCREENS/CREATE_USER_PROFILE.dart';
 import 'package:instagram_duplicate_app/UI/WIDGETS/signout.dart';
+import 'package:instagram_duplicate_app/themes/themes.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -51,8 +53,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   
                   actions: [
 
-                    IconButton(onPressed: (){}, icon: Icon(Icons.dark_mode)),
+                    IconButton(onPressed: (){
+                      Provider.of<ThemeNotifier>(context, listen: false).toggleTheme();
+                    }, icon: Icon(Icons.dark_mode)),
+
                     IconButton(onPressed: (){}, icon: Image(image: AssetImage("assets/ICONS/Add_Icon.png",),width: 20.w,height: 20.h,)),
+
                     IconButton(
                       onPressed: () {
                         showSignOutMenu(context); // Call the function from the separate file
@@ -173,64 +179,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
 
 
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Column(
-                              children: [
-                                CircleAvatar(
-                                  radius: 35.r,
-                                  backgroundImage: AssetImage('assets/IMAGES/profilepic.png'),
-                                ),
-                                Text("Text here"),
-                              ],
-                            ),
-                            SizedBox(width: 5.w),
-                            Column(
-                              children: [
-                                CircleAvatar(
-                                  radius: 35.r,
-                                  backgroundImage: AssetImage('assets/IMAGES/profilepic.png'),
-                                ),
-                                Text("Text here"),
-                              ],
-                            ),
-                            SizedBox(width: 5.w),
-                            Column(
-                              children: [
-                                CircleAvatar(
-                                  radius: 35.r,
-                                  backgroundImage: AssetImage('assets/IMAGES/profilepic.png'),
-                                ),
-                                Text("Text here"),
-                              ],
-                            ),
 
-                            SizedBox(width: 5.w),
-                            Column(
-                              children: [
-                                CircleAvatar(
-                                  radius: 35.r,
-                                  backgroundImage: AssetImage('assets/IMAGES/profilepic.png'),
-                                ),
-                                Text("Text here"),
-                              ],
-                            ),
-                            SizedBox(width: 5.w),
-                            Column(
-                              children: [
-                                CircleAvatar(
-                                  radius: 35.r,
-                                  backgroundImage: AssetImage('assets/IMAGES/profilepic.png'),
-                                ),
-                                Text("Text here"),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
                       SizedBox(height: 10.h,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,  // Center the icons

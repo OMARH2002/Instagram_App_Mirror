@@ -57,7 +57,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Provider.of<ThemeNotifier>(context, listen: false).toggleTheme();
                     }, icon: Icon(Icons.dark_mode)),
 
-                    IconButton(onPressed: (){}, icon: Image(image: AssetImage("assets/ICONS/Add_Icon.png",),width: 20.w,height: 20.h,)),
+
 
                     IconButton(
                       onPressed: () {

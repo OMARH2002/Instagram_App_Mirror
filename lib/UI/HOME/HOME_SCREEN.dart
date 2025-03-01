@@ -5,10 +5,12 @@ import 'package:instagram_duplicate_app/LOGIC/HOMEPAGE/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/HOMEPAGE/state.dart';
 import 'package:instagram_duplicate_app/UI/HOME/Post_Upload.dart';
 import 'package:instagram_duplicate_app/UI/HOME/Story_Upload.dart';
-import 'package:instagram_duplicate_app/UI/Messages/chat_Screen.dart';
+
 import 'package:instagram_duplicate_app/UI/Messages/chat_list_screen.dart';
 import 'package:instagram_duplicate_app/UI/WIDGETS/post.dart';
 import 'package:instagram_duplicate_app/UI/WIDGETS/story.dart';
+import 'package:instagram_duplicate_app/themes/themes.dart';
+import 'package:provider/provider.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -24,7 +26,10 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.red,
         actions: [
 
-          IconButton(onPressed: (){}, icon:Image(image: AssetImage("assets/ICONS/Favorite_Icon.png"),width: 24.w,)),
+          IconButton(onPressed: (){
+            Provider.of<ThemeNotifier>(context, listen: false).toggleTheme();
+          }, icon: Icon(Icons.dark_mode)),
+
           IconButton(onPressed: (){
             Navigator.push(
               context,

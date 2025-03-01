@@ -1,41 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:instagram_duplicate_app/UI/WIDGETS/videoplayer.dart';
 
-class UserProfileImages extends StatefulWidget {
-  const UserProfileImages({super.key});
+class UserProfileVideo extends StatefulWidget {
+  const UserProfileVideo({super.key});
 
   @override
-  State<UserProfileImages> createState() => _UserProfileImagesState();
+  State<UserProfileVideo> createState() => _UserProfileVideoState();
 }
 
-class _UserProfileImagesState extends State<UserProfileImages> {
-  List<String> _imageUrl = [];
+class _UserProfileVideoState extends State<UserProfileVideo> {
+  List<String> _videoUrl = [];
   bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _fetchUserImages();
+    _fetchUserVideo();
   }
 
-  Future<void> _fetchUserImages() async {
+  Future<void> _fetchUserVideo() async {
     final userId = FirebaseAuth.instance.currentUser?.uid;
     if (userId == null) return;
 
     try {
       final snapshot = await FirebaseFirestore.instance
-          .collection('posts')
+          .collection('reels')
           .where('userId', isEqualTo: userId)
           .orderBy('timestamp', descending: true)
           .get();
 
-      final imageUrl = snapshot.docs
-          .map((doc) => doc['imageUrl'] as String)
+      final videoUrl = snapshot.docs
+          .map((doc) => doc['videoUrl'] as String)
           .toList();
 
       setState(() {
-        _imageUrl = imageUrl;
+        _videoUrl = videoUrl;
         _isLoading = false;
       });
     } catch (e) {
@@ -52,21 +53,19 @@ class _UserProfileImagesState extends State<UserProfileImages> {
       return const Center(child: CircularProgressIndicator());
     }
 
-    if (_imageUrl.isEmpty) {
-      return const Center(child: Text('No images available'));
+    if (_videoUrl.isEmpty) {
+      return const Center(child: Text('No videos available'));
     }
 
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3, // 3 images per row
+        crossAxisCount: 1, // 3 images per row
         crossAxisSpacing: 2,
         mainAxisSpacing: 2,
       ),
-      itemCount: _imageUrl.length,
+      itemCount: _videoUrl.length,
       itemBuilder: (context, index) {
-        return Image.network(
-          _imageUrl[index],
-          fit: BoxFit.cover,
+        return VideoPlayerWidget(videoUrl:  _videoUrl[index],
         );
       },
     );

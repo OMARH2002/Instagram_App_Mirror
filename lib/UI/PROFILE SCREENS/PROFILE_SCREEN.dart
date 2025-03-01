@@ -6,6 +6,7 @@ import 'package:instagram_duplicate_app/LOGIC/USER_PROFILE_PAGE/state.dart';
 import 'package:instagram_duplicate_app/UI/PROFILE%20SCREENS/CREATE_USER_PROFILE.dart';
 import 'package:instagram_duplicate_app/UI/WIDGETS/User%20Images.dart';
 import 'package:instagram_duplicate_app/UI/WIDGETS/signout.dart';
+import 'package:instagram_duplicate_app/UI/WIDGETS/user%20video.dart';
 import 'package:instagram_duplicate_app/themes/themes.dart';
 import 'package:provider/provider.dart';
 
@@ -202,7 +203,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                         UserProfileImages(),
 
                         // Play view (Placeholder)
-                        Center(child: Text("Play View")),
+                      UserProfileVideo(),
 
                         // Mention view (Placeholder)
                         Center(child: Text("Mention View")),

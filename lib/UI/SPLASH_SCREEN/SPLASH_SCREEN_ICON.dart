@@ -17,7 +17,7 @@ class _SplashScreenIconState extends State<SplashScreenIcon> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Timer(const Duration(seconds: 6), () {
-        if (mounted) { // Ensure the widget is still in the tree
+        if (mounted) {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => const LoginScreen()),

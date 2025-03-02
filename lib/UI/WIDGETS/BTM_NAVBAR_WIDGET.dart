@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:instagram_duplicate_app/LOGIC/USER_PROFILE_PAGE/cubit.dart';
 import 'package:instagram_duplicate_app/LOGIC/USER_PROFILE_PAGE/state.dart';
 import 'package:instagram_duplicate_app/UI/HOME/HOME_SCREEN.dart';
